@@ -18,6 +18,14 @@ export class AppComponent implements OnInit {
   constructor(private translateService: TranslateService){
     this.translateService.addLangs(this.supportLanguages);
     this.translateService.setDefaultLang('en');
+
+    const browserlang = this.translateService.getBrowserLang();
+
+    console.log('Browser Language => ', browserlang);
+
+    if (this.supportLanguages.includes(browserlang)) {
+      this.translateService.use(browserlang);
+    }
   }
 
   useLang(lang: string) {
